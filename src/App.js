@@ -5,6 +5,16 @@ import Currency from './components/Currency';
 import AmountInput from './components/AmountInput'
 import TimeCheckbox from './components/TimeCheckbox'
 import List from './components/List'
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+  wraper: {
+    display: 'flex',
+    flexDirection: 'row',  
+    justifyContent: 'flex-start',   
+  },
+});
 
 const App = () => {
   const [filters, setFilters] = useState({
@@ -52,12 +62,18 @@ const App = () => {
     setInput(event.target.value);
   }
 
+  const classes = useStyles();
+
   return(
     <div className="App">
+      <div className={classes.wraper}>
       <Currency setFilters={setFilters} filters={filters}/>
       <AmountInput changeInput={changeInput} value={input}/>
+      </div>
+      <div className={classes.wraper}>
       <TimeCheckbox  setFilters={setFilters} filters={filters}/>
       <List count={input} data={data}/>
+      </div>
     </div>
   );  
 };
